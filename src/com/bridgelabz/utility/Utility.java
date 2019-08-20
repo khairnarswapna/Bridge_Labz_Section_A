@@ -112,13 +112,7 @@ public class Utility
 		        return binary;
 		    }
 
-
-		    /**
-			 * 16. Binary.java ---> convert decimal to binary swap
-		     *  nibbles and fins new decimal number
-			 * @param binary
-			 * @return
-			 */
+ 
 		    public String swapNibbles(String binary) 
 		    {
 		        String str1,str2,temp1,temp2;
@@ -166,7 +160,7 @@ public class Utility
 		    
 		    
 		    //***********Prime Function****************/
-		    public boolean isPrime(int no) 
+		    public static boolean isPrime(int no) 
 		    {
 				if (no == 0 || no== 1) {
 					return false;
@@ -202,7 +196,9 @@ public class Utility
 			}
 		    
 		    //************************************
-		    public int CalculateFactorial(int number) 
+		    /* function for factorial*/
+		    
+		    public static int CalculateFactorial(int number) 
 		    {
 				int fact = 1;
 				for (int i = 1; i <= number; i++) 
@@ -311,7 +307,7 @@ public boolean LeapYrValidation(int yr)
 
 
 
-public boolean leapYr(int yr) 
+public boolean leapYear(int yr) 
 {
 
 	if (yr % 4 == 0 || yr % 400 == 0 && yr % 100 != 0) {
@@ -333,58 +329,6 @@ public static int calDayOfWeek(int day, int month, int yr)
 	return d1;
 }
 
-
-/*public static int daysInMonth(int month, boolean leapYr) 
-{
-
-	switch (month) 
- {
-	case 1:
-		return 31;
-	case 2:
-		if (leapYr)
-			return 29;
-		else
-			return 28;
-	case 3:
-		return 31;
-	case 4:
-		return 30;
-	case 5:
-		return 31;
-	case 6:
-		return 30;
-	case 7:
-		return 31;
-	case 8:
-		return 31;
-	case 9:
-		return 30;
-	case 10:
-		return 31;
-	case 11:
-		return 30;
-	case 12:
-		return 31;
-	}
-	return 0;
-
-}*/
-
-
-
- 
-
- 
-public boolean leapYear(int year) {
-
-	if (year % 4 == 0 || year % 400 == 0 && year % 100 != 0) {
-		return true;
-	} else {
-		return false;
-	}
-
-}
  
 /* ********** function validation for date**********/
 public boolean checkValidateDate(int month, int day, boolean leapYear) 
@@ -402,7 +346,8 @@ public boolean checkValidateDate(int month, int day, boolean leapYear)
 			return false;
 		}
 	case 2:
-		if (leapYear) {
+		if (leapYear) 
+		{
 			if (day > 0 && day <= 29) 
 			{
 				return true;
@@ -451,7 +396,9 @@ public boolean checkValidateDate(int month, int day, boolean leapYear)
 		if (day > 0 && day <= 31) 
 		{
 			return true;
-		} else {
+		} 
+		else 
+		{
 			return false;
 		}
 	case 8:
@@ -617,9 +564,130 @@ private static void reverse(char[] arr, int i, int j) {
 }
 
 
+
+
+/* ******-------------------------------------------------*/
+
+ 
+
+public double max(double a[])
+{
+	double max = a[0];
+	for (int i = 1; i <= a.length-1; i++) 
+	{
+		if (a[i] > max) 
+		{
+			max = a[i];
+		}
+	}
+	return max;
+}
+
+public double min(double[] a) 
+{
+	double min = a[0];
+	for (int i = 1; i <= a.length-1; i++) 
+	{
+		if (a[i] < min) {
+			min = a[i];
+		}
+	}
+	return min;
+}
+
+public static double Mean(double a[]) 
+{
+	double sum = 0;
+	for (int i = 0; i <= a.length-1; i++) 
+	{
+		sum = sum + a[i];
+	}
+	return sum / (a.length + 1);
+}
+
+public double variance(double a[]) 
+{
+
+	int n = a.length + 1;
+	double mean = Mean(a);
+	double sumTempArr = 0;
+	double[] tempArr = new double[n];
+	for (int i = 0; i < a.length; i++) 
+	{
+		tempArr[i] = a[i] - mean;
+
+	}
+	for (int i = 0; i < a.length; i++) 
+	{
+		tempArr[i] = Math.pow(Math.abs(tempArr[i]), 2);
+
+	}
+ 
+	for (int i = 0; i < tempArr.length; i++) 
+	{
+		sumTempArr += tempArr[i];
+	}
+
+	return sumTempArr / (n - 1);
+
+}
+
+public double standardDeviation(double[] arr) 
+{
+	return Math.sqrt(variance(arr));
+}
+
+public static double Median(double[] arr) {
+	// First we sort the array
+	Arrays.sort(arr);
+	int n = arr.length;
+	// check for even case
+	if (n % 2 != 0)
+		return (double) arr[n / 2];
+
+	return (double) (arr[(n - 1) / 2] + arr[n / 2]) / 2.0;
 }
 
 
+public static double findSquareRootUsingNewtonsMethod(int c, double epsilon) 
+{
+	double t;
+	t = c;
+//	epsilon=1*(Math.pow(10, -15));
+
+	while (Math.abs(t - c / t) > epsilon * t) {
+		t = (c / t + t) / 2.0;
+	}
+	return t;
+}
+
+
+/* *********Min Value for Integer array*************/
+public static int minValue(int num[]) 
+{
+	int temp = num[0] < num[1] ? num[0] : num[1];
+	
+	for (int i = 2; i < num.length; i++) 
+	{
+		temp = temp < num[i] ? temp : num[i];
+	}
+	return temp;
+}
+
+
+/* *********Min Value for Integer array*************/
+
+public static int maxValue(int[] num) 
+{
+	int temp = num[0] > num[1] ? num[0] : num[1];
+	for (int i = 2; i < num.length; i++) 
+	{
+		temp = temp > num[i] ? temp : num[i];
+	}
+	return temp;
+}
+
+}/*body of class*/
 
 
 
