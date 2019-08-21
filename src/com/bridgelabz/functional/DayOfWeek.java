@@ -8,21 +8,22 @@ public class DayOfWeek
 	{  
 		Utility utility = new Utility();
 		Scanner sc=new Scanner(System.in);
-		int day,month,yr,d1;
-		boolean leapYear,isValidDate;
+		int day,month,year,d1;
+		boolean leapyr,isValidDate;
 		System.out.println("Please Enter Day: ");
 		day=sc.nextInt();
 		System.out.println("Please Enter Month: ");
 		month=sc.nextInt();
 		System.out.println("please Enter Year: ");
-		yr=sc.nextInt();
-	 //   yr=utility.leapyr(yr);
-	//	isValidDate=utility.checkValidationForDate(month,day,yr);
-		/*if(isValidDate) 
+		year=sc.nextInt();
+	    leapyr=utility.leapYear(year);
+    	isValidDate=utility.checkValidateDate(month,day,leapyr);
+	     if(isValidDate) 
            {
-			d1=Utility.calculateDayOfWeek(day,month,yr);
+			d1=Utility.caldaysOfMonth(month,leapyr);
 			
-			switch(d1) {
+			switch(d1) 
+			{
 				case 0:
 					System.out.println("Day=>Sunday");
 					break;
@@ -45,9 +46,11 @@ public class DayOfWeek
 					System.out.println("Day=>Saturday");
 					break;
 			}
-		}else {
+		}
+		else 
+		{
 			System.out.println("please Enter the Invalid Date");
-		}*/
+		}
 		
 		
 	

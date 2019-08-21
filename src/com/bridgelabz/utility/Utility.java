@@ -95,6 +95,9 @@ public class Utility
 			 return val;
 			 
 		 }
+		 
+		 
+		 
 		 public String toBinary(int decimal)
 			{
 		        String binary = "";
@@ -448,14 +451,19 @@ public boolean checkValidateDate(int month, int day, boolean leapYear)
 public static int caldaysOfMonth(int month, boolean leapYear) 
 {
 
-	switch (month) {
+	switch (month) 
+	{
 	case 1:
 		return 31;
 	case 2:
 		if (leapYear)
+		{
 			return 29;
+		}
 		else
+		{
 			return 28;
+		}
 	case 3:
 		return 31;
 	case 4:
@@ -483,10 +491,12 @@ public static int caldaysOfMonth(int month, boolean leapYear)
 
  
 public static void permutationRecursion(String str, int startIndex, int endIndex) {
-	if (startIndex == endIndex) {
+	if (startIndex == endIndex) 
+	{
 		System.out.print(str + " ");
 
-	} else {
+	} else 
+	{
 		for (int i = startIndex; i <= endIndex; i++) {
 			str = swap(str, startIndex, i);
 			// System.out.println("x="+str);
@@ -566,7 +576,31 @@ private static void reverse(char[] arr, int i, int j) {
 
 
 
-/* ******-------------------------------------------------*/
+/* ******----------------
+
+
+/**function for binary*/
+public static String Binary(int decimalno)
+{
+
+		String a=" ";
+		if(decimalno>255)
+		{
+			System.out.println("Enter the no between 255");
+		}
+		else
+		{
+				while(decimalno>0)
+				{
+					int m=decimalno%2;
+					a=m+" "+a;
+					decimalno=decimalno/2;
+					
+				}
+		}
+		return a;
+}
+
 
  
 
@@ -635,7 +669,7 @@ public double variance(double a[])
 public double standardDeviation(double[] arr) 
 {
 	return Math.sqrt(variance(arr));
-}
+} 
 
 public static double Median(double[] arr) {
 	// First we sort the array
@@ -649,20 +683,18 @@ public static double Median(double[] arr) {
 }
 
 
-public static double findSquareRootUsingNewtonsMethod(int c, double epsilon) 
+public static double findSqrtNewtonsMethod(int c, double epsilon) 
 {
 	double t;
-	t = c;
-//	epsilon=1*(Math.pow(10, -15));
-
-	while (Math.abs(t - c / t) > epsilon * t) {
+	t = c;while (Math.abs(t - c / t) > epsilon * t)
+	{
 		t = (c / t + t) / 2.0;
 	}
 	return t;
 }
 
 
-/* *********Min Value for Integer array*************/
+/* *********function for Min Value for Integer array*************/
 public static int minValue(int num[]) 
 {
 	int temp = num[0] < num[1] ? num[0] : num[1];
@@ -679,12 +711,119 @@ public static int minValue(int num[])
 
 public static int maxValue(int[] num) 
 {
-	int temp = num[0] > num[1] ? num[0] : num[1];
+	int t = num[0] > num[1] ? num[0] : num[1];
 	for (int i = 2; i < num.length; i++) 
 	{
-		temp = temp > num[i] ? temp : num[i];
+		t = t> num[i] ? t : num[i];
 	}
-	return temp;
+	return t;
+}
+
+
+/* ***function for string Min*/
+public static String minValue(String str[])
+{
+	for (int i = 0; i < str.length; i++) 
+	{
+	
+		for (int j = 0; j < str.length; j++) 
+		{
+		
+				if(str[j].compareTo(str[i])<0)
+				{
+					String temp=str[j];
+					str[j]=str[i];
+					str[i]=temp;
+				}
+		}
+		
+	}
+	return str[0];
+	
+}
+
+
+public static String maxValue(String str[])
+{
+	int strlen=str.length;
+	for (int i = 0; i < str.length; i++) 
+	{
+	
+		for (int j = 0; j < str.length; j++) 
+		{
+		
+				if(str[j].compareTo(str[i])<0)
+				{
+					String temp=str[j];
+					str[j]=str[i];
+					str[i]=temp;
+				}
+		}
+		
+	}
+	return str[strlen-1];
+	
+}
+
+
+public static double HarmonicNo(double n)
+{
+	 int i;
+	 double val=0.0;
+	 for(i=1;i<=n;i++)
+	 {
+		val=val+(1.0/i);
+		 
+		 
+	 }
+	 return val;
+	 
+}
+
+
+
+public static double futureValue(int c,int r,int t)
+{
+	return c*Math.pow(1+r,t);
+
+}
+
+public static double presentValue(int c,int r,int t)
+{
+	return c*Math.pow(c/(1+r),t);
+
+}
+
+/* --------------------------------
+ * Collinear function slope
+ */
+
+public static boolean chkCollinearSlope(int x1,int x2,int x3,int y1,int y2,int y3)
+{
+	double SlopeAB,SlopeBC,SlopeAC;
+	SlopeAB=(y2-y1)/(x2-x1);
+	SlopeBC=(y3-y2)/(x3-x2);
+	SlopeAC=(y3-y1)/(x3-x1);
+	
+	if(SlopeAB==SlopeBC && SlopeAB==SlopeAC)
+	{
+		return true;
+	}
+	return false;
+	
+}
+
+/*----------------------
+ * Collinear function Area
+ * 
+ */
+public static boolean chkCollinearArea(int x1,int x2,int x3,int y1,int y2,int y3)
+{ 
+	
+		int CalTriangleCollinear=x1*(y2-y3)+y2*(y3-y1)+x3*(y1-y2);
+		if(CalTriangleCollinear==0)
+			return true;
+		return false;
 }
 
 }/*body of class*/
